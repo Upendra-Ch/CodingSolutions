@@ -18,7 +18,7 @@ class GFG {
 		    int maxGlobal , maxCur;
 		    maxGlobal = maxCur = inputArr[0];
 		    for(int i = 1;i<num;i++){
-		        maxCur = (maxCur> (maxCur+inputArr[i])) ? maxCur:(maxCur+inputArr[i]);
+		        maxCur = (inputArr[i]> (maxCur+inputArr[i])) ? inputArr[i]:(maxCur+inputArr[i]);
 		      // System.out.println("maxCur="+maxCur+"\t(maxCur+inputArr[i])="+(maxCur+inputArr[i]));
 		      /* if(maxCur<(maxCur+inputArr[i]))
 		       {
