@@ -1,0 +1,55 @@
+/*package whatever //do not write package name here */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) throws IOException{
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int testCases = Integer.parseInt(br.readLine());
+		
+		
+		while(testCases-->0){
+		    int n,num = Integer.parseInt(br.readLine());
+		    n=num;
+		    int arr[] = new int[num];
+		    String [] inputArr = br.readLine().split(" ");
+		    for(int i=0;i<n;i++)
+		        arr[i]= Integer.parseInt(inputArr[i]);
+		    int jumps[] = new int[num];
+		    for(int i=0;i<n;i++)
+		        jumps[i] = Integer.MAX_VALUE;
+		    jumps[num-1] = 0;
+		     
+		    for(int i=n-2;i>=0;i--){
+		        int smal = Integer.MAX_VALUE;
+		        int count = Integer.MAX_VALUE;
+		        for(int j= arr[i];j>0;j--)
+		        {
+		            if(i+j>=num-1){
+		                jumps[i]=1;
+		                break;
+		            }
+		            else if(jumps[i]>jumps[i+j] && jumps[i+j]!=Integer.MAX_VALUE){
+		                //if(count == jumps[i+j])
+		                jumps[i]=jumps[i+j]+1;
+		                smal = arr[i+j];
+		            }
+		        }
+		        /*for(int i1=0;i1<n;i1++){
+		            System.out.print(arr[i1]+"\t");
+		        }
+		        for(int i1=0;i1<n;i1++){
+		            System.out.print(jumps[i1]+"\t");
+		        }*/
+		    }
+		    
+		        //
+		    if(jumps[0]!=Integer.MAX_VALUE)
+		           System.out.println(jumps[0]);
+		    else System.out.println(-1);
+		}
+	}
+}
