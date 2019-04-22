@@ -1,0 +1,50 @@
+/*package whatever //do not write package name here */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args)throws IOException { 
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int testCases = Integer.parseInt(br.readLine());
+        while(testCases-->0){
+            int num = Integer.parseInt(br.readLine());
+            String [] setStr = br.readLine().split(" ");
+            int [] set = new int[num];
+            int sum=0;
+            for(int i=0;i<num;i++){
+                set[i]= Integer.parseInt(setStr[i]);
+                sum=sum+set[i];
+            }
+            if(sum%2!=0){
+                //System.out.println("NO sum = "+sum);
+                System.out.println("NO");
+                continue;
+            }
+            int half = sum/2;
+            int [][] tab = new int[num+1][half+1];
+            for(int i=1;i<=num;i++){
+                tab[i][0]=1;
+            }
+                
+            for(int i=1;i<=num;i++){
+                for(int j=1;j<=half;j++){
+                    if(tab[i-1][j]==1)
+                        tab[i][j] = 1;
+                    else if (j-set[i-1]>=0){
+                        tab[i][j]=tab[i-1][j-set[i-1]];
+                    }
+                }
+            }
+            /*for(int i=0;i<=num;i++){
+                for(int j=0;j<=half;j++){
+                    System.out.print("\t"+tab[i][j]);
+                }System.out.println();
+            }*/
+            if(tab[num][half]==1)
+                System.out.println("YES");
+            else System.out.println("NO");
+        }
+	}
+}
